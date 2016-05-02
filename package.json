@@ -1,0 +1,23 @@
+{
+    "name": "react-native-card-io",
+        "version": "0.0.1",
+        "description": "Card IO React Native Plugin",
+        "main": "index.js",
+        "author": "paypal",
+        "license": "MIT License, see LICENSE for details",
+        "keywords": [
+            "react-native",
+            "react-component",
+            "android",
+            "card.io",
+            "card-io",
+            "scanner",
+            "mobile",
+            "camera"
+        ],
+        "homepage": "https://paypal.com/",
+        "repository": {
+            "type": "git",
+            "url": "git://github.com/paypal/react-native-card-io.git"
+        }
+}
