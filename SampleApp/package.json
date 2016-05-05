@@ -1,0 +1,19 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@remobile/react-native-simple-button": "^1.0.0",
+    "react": "^0.14.8",
+    "react-native": "^0.24.1",
+    "react-native-card-io": "file:///Users/japatel/Desktop/cardiocordova/react-native-card-io"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "author": "",
+  "license": "ISC"
+}
