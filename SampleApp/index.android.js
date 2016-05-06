@@ -1,5 +1,6 @@
 'use strict';
 import React, {
+  Alert,
   AppRegistry,
   Component,
   StyleSheet,
@@ -8,7 +9,10 @@ import React, {
 
 var CardIO = require('react-native-card-io');
 var Button = require('@remobile/react-native-simple-button');
+
+
 class CardIOReactSampleApp extends Component {
+
   constructor(props) {
     super(props);
     this.onBtnPress = this.onBtnPress.bind(this);
@@ -25,7 +29,10 @@ class CardIOReactSampleApp extends Component {
   }
 
   onBtnPress() {
-    CardIO.scan({"requireExpiry": true}).then(function(data) {
+    CardIO.scan({
+      "requireExpiry": true,
+      "scanInstructions": "Using Card.IO React Plugin",
+    }).then(function(data) {
       var card = JSON.parse(data);
       console.log(card);
     }, function(err) {

@@ -41,9 +41,24 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
     @ReactMethod
     public void scan(ReadableMap options, Promise promise) {
       this.promise = promise;
-      final Boolean requireExpiry = options.getBoolean("requireExpiry");
 
       Intent scanIntent = new Intent(this.reactContext, CardIOActivity.class);
+      scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, this.getOptionBoolean(options, "requireExpiry", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, this.getOptionBoolean(options, "requireCVV", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_POSTAL_CODE, this.getOptionBoolean(options, "requirePostalCode", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, this.getOptionBoolean(options, "supressManual", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_RESTRICT_POSTAL_CODE_TO_NUMERIC_ONLY, this.getOptionBoolean(options, "restrictPostalCodeToNumericOnly", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_KEEP_APPLICATION_THEME, this.getOptionBoolean(options, "keepApplicationTheme", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CARDHOLDER_NAME, this.getOptionBoolean(options, "requireCardholderName", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_USE_CARDIO_LOGO, this.getOptionBoolean(options, "useCardIOLogo", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_SCAN_INSTRUCTIONS, this.getOptionString(options, "scanInstructions", null)); // default: empty
+      scanIntent.putExtra(CardIOActivity.EXTRA_NO_CAMERA, this.getOptionBoolean(options, "noCamera", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_SCAN_EXPIRY, this.getOptionBoolean(options, "scanExpiry", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_LANGUAGE_OR_LOCALE, this.getOptionString(options, "languageOrLocale", null)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_GUIDE_COLOR, this.getOptionBoolean(options, "guideColor", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_CONFIRMATION, this.getOptionBoolean(options, "suppressConfirmation", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_HIDE_CARDIO_LOGO, this.getOptionBoolean(options, "hideCardIOLogo", false)); // default: false
+
       this.reactContext.startActivityForResult(scanIntent, REQUEST_CARD_SCAN, null);
     }
 
@@ -86,5 +101,19 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
         }
 
         return scanCard;
+    }
+
+    private Boolean getOptionBoolean(ReadableMap options, String key, Boolean defaultValue) {
+        if (options != null && options.hasKey(key) && !options.isNull(key)) {
+          return options.getBoolean(key);
+        }
+        return defaultValue;
+    }
+
+    private String getOptionString(ReadableMap options, String key, String defaultValue) {
+        if (options != null && options.hasKey(key) && !options.isNull(key)) {
+          return options.getString(key);
+        }
+        return defaultValue;
     }
 }
