@@ -29,15 +29,20 @@ class CardIOReactSampleApp extends Component {
   }
 
   onBtnPress() {
-    CardIO.scan({
-      "requireExpiry": true,
-      "scanInstructions": "Using Card.IO React Plugin",
-    }).then(function(data) {
-      var card = JSON.parse(data);
-      console.log(card);
+    CardIO.canScan().then(function(data) {
+      CardIO.scan({
+        "requireExpiry": true,
+        "scanInstructions": "Using Card.IO React Plugin",
+      }).then(function(data) {
+        var card = JSON.parse(data);
+        console.log(card);
+      }, function(err) {
+        console.log(err);
+      });
     }, function(err) {
       console.log(err);
-    });
+    }
+    )
   }
 }
 

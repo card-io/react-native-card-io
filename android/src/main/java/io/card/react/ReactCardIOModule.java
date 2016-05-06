@@ -39,6 +39,16 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
     }
 
     @ReactMethod
+    public void canScan(Promise promise) throws JSONException {
+        if (CardIOActivity.canReadCardWithCamera()) {
+            // This is where we return if scanning is enabled.
+            promise.resolve("Card Scanning is enabled");
+        } else {
+            promise.reject("Card Scanning is not enabled");
+        }
+    }
+
+    @ReactMethod
     public void scan(ReadableMap options, Promise promise) {
       this.promise = promise;
 
