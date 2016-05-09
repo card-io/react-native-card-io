@@ -18,7 +18,7 @@ import io.card.payment.CreditCard;
 
 public class ReactCardIOModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
-    public static final String TAG = "com.remobile.toast.CardIO";
+    public static final String TAG = "io.card.react.CardIO";
 
     private android.widget.Toast mostRecentToast;
     private static final int REQUEST_CARD_SCAN = 10;
