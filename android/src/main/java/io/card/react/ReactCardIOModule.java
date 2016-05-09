@@ -23,14 +23,12 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
     private android.widget.Toast mostRecentToast;
     private static final int REQUEST_CARD_SCAN = 10;
 
-    private ReactApplicationContext reactContext;
     private Callback successCallback, failureCallback;
     private Promise promise;
 
     public ReactCardIOModule(ReactApplicationContext reactContext) {
       super(reactContext);
-      this.reactContext = reactContext;
-      this.reactContext.addActivityEventListener(this);
+      getReactApplicationContext().addActivityEventListener(this);
     }
 
     @Override
@@ -52,7 +50,7 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
     public void scan(ReadableMap options, Promise promise) {
       this.promise = promise;
 
-      Intent scanIntent = new Intent(this.reactContext, CardIOActivity.class);
+      Intent scanIntent = new Intent(getReactApplicationContext(), CardIOActivity.class);
       scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, this.getOptionBoolean(options, "requireExpiry", false)); // default: false
       scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, this.getOptionBoolean(options, "requireCVV", false)); // default: false
       scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_POSTAL_CODE, this.getOptionBoolean(options, "requirePostalCode", false)); // default: false
@@ -69,7 +67,7 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
       scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_CONFIRMATION, this.getOptionBoolean(options, "suppressConfirmation", false)); // default: false
       scanIntent.putExtra(CardIOActivity.EXTRA_HIDE_CARDIO_LOGO, this.getOptionBoolean(options, "hideCardIOLogo", false)); // default: false
 
-      this.reactContext.startActivityForResult(scanIntent, REQUEST_CARD_SCAN, null);
+      getReactApplicationContext().startActivityForResult(scanIntent, REQUEST_CARD_SCAN, null);
     }
 
     @Override
