@@ -8,7 +8,7 @@ import React, {
 } from 'react-native';
 
 var CardIO = require('react-native-card-io');
-var Button = require('@remobile/react-native-simple-button');
+var Button = require('react-native-button');
 
 
 class CardIOReactSampleApp extends Component {
@@ -21,8 +21,10 @@ class CardIOReactSampleApp extends Component {
   render() {
       return (
           <View style={styles.container}>
-              <Button onPress={this.onBtnPress}>
-                  showCamera
+          <Button containerStyle={styles.button}
+               style={{fontSize: 20, color: 'white'}}
+               onPress={this.onBtnPress} >
+                    Scan Credit Card
               </Button>
           </View>
       );
@@ -53,6 +55,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'transparent',
         paddingVertical:150,
+    },
+    button: {
+        padding:10,
+        height:45,
+        overflow:'hidden',
+        borderRadius:4,
+        backgroundColor: 'blue',
     }
 });
 
