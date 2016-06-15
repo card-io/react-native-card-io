@@ -59,7 +59,7 @@ project(':react-native-card-io').projectDir = new File(rootProject.projectDir,  
 We only need the second line as we are doing local build. This may not be necessary once we have an external release.
 
 Now, in `SampleApp/android/app/src/main/java/com/awesomeproject/MainActivity.java`, add `ReactCardIOPackage` to the list:
-```
+```java
     /**
      * A list of packages used by the app. If the app uses additional views
      * or modules besides the default ones, add more packages here.
