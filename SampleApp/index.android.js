@@ -8,8 +8,7 @@ import React, {
 } from 'react-native';
 
 var CardIO = require('react-native-card-io');
-var Button = require('react-native-button');
-
+import Button from 'react-native-button';
 
 class CardIOReactSampleApp extends Component {
 
