@@ -80,7 +80,7 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
                     scanResult = intent
                             .getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
                     //this.callbackContext.success(this.toJSONObject(scanResult));
-                    Log.i("JAY","Scan Result: " + this.toJSONObject(scanResult));
+                    Log.i(TAG,"Scan Result: " + this.toJSONObject(scanResult));
                     this.promise.resolve(this.toJSONObject(scanResult).toString());
                 } else {
                   this.promise.reject("card was scanned but no result");
