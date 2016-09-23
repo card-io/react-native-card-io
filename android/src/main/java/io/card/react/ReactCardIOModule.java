@@ -72,7 +72,7 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-      Log.i("JAY","Jay Activity Result" + requestCode + " result Code " + resultCode);
+      Log.i(TAG,"Activity Result" + requestCode + " result Code " + resultCode);
       if (REQUEST_CARD_SCAN == requestCode) {
             if (resultCode == CardIOActivity.RESULT_CARD_INFO) {
                 CreditCard scanResult = null;
