@@ -69,6 +69,11 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
 
       getReactApplicationContext().startActivityForResult(scanIntent, REQUEST_CARD_SCAN, null);
     }
+    
+    public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
+      Log.i(TAG, "Activity "+activity+" Result " + requestCode + " result Code " + resultCode);
+      onActivityResult(requestCode, resultCode, intent);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
