@@ -90,7 +90,11 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
                 } else {
                   this.promise.reject("card was scanned but no result");
                 }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
+            } else if (resultCode == CardIOActivity.RESULT_SCAN_NOT_AVAILABLE) {
+                this.promise.reject("card scan unavailable");
+            } else if (resultCode == CardIOActivity.RESULT_SCAN_SUPPRESSED) {
+                this.promise.reject("card scan suppressed");
+            } else if (resultCode == Activity.RESULT_CANCELED || resultCode == CardIOActivity.RESULT_ENTRY_CANCELED) {
                 this.promise.reject("card scan cancelled");
             } else {
                 this.promise.reject(Integer.toString(resultCode));
