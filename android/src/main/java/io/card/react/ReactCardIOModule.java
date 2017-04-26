@@ -79,7 +79,7 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
       Log.i(TAG,"Activity Result" + requestCode + " result Code " + resultCode);
       if (REQUEST_CARD_SCAN == requestCode) {
-            if (resultCode == CardIOActivity.RESULT_CARD_INFO) {
+            if (resultCode == CardIOActivity.RESULT_CARD_INFO || resultCode == CardIOActivity.RESULT_CONFIRMATION_SUPPRESSED) {
                 CreditCard scanResult = null;
                 if (intent.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
                     scanResult = intent
@@ -90,7 +90,11 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
                 } else {
                   this.promise.reject("card was scanned but no result");
                 }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
+            } else if (resultCode == CardIOActivity.RESULT_SCAN_NOT_AVAILABLE) {
+                this.promise.reject("card scan unavailable");
+            } else if (resultCode == CardIOActivity.RESULT_SCAN_SUPPRESSED) {
+                this.promise.reject("card scan suppressed");
+            } else if (resultCode == Activity.RESULT_CANCELED || resultCode == CardIOActivity.RESULT_ENTRY_CANCELED) {
                 this.promise.reject("card scan cancelled");
             } else {
                 this.promise.reject(Integer.toString(resultCode));
