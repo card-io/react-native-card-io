@@ -8,6 +8,7 @@ import com.facebook.react.bridge.*;
 import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,7 +64,7 @@ public class ReactCardIOModule extends ReactContextBaseJavaModule implements Act
       scanIntent.putExtra(CardIOActivity.EXTRA_NO_CAMERA, this.getOptionBoolean(options, "noCamera", false)); // default: false
       scanIntent.putExtra(CardIOActivity.EXTRA_SCAN_EXPIRY, this.getOptionBoolean(options, "scanExpiry", false)); // default: false
       scanIntent.putExtra(CardIOActivity.EXTRA_LANGUAGE_OR_LOCALE, this.getOptionString(options, "languageOrLocale", null)); // default: false
-      scanIntent.putExtra(CardIOActivity.EXTRA_GUIDE_COLOR, this.getOptionBoolean(options, "guideColor", false)); // default: false
+      scanIntent.putExtra(CardIOActivity.EXTRA_GUIDE_COLOR, Color.parseColor(this.getOptionString(options, "guideColor", "green"))); // default: green
       scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_CONFIRMATION, this.getOptionBoolean(options, "suppressConfirmation", false)); // default: false
       scanIntent.putExtra(CardIOActivity.EXTRA_HIDE_CARDIO_LOGO, this.getOptionBoolean(options, "hideCardIOLogo", false)); // default: false
 
